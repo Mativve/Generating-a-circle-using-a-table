@@ -11,36 +11,73 @@
 
 <body>
 
-    <table id="circle" class="center">
+    <table id="circle" class="center showgrid">
     </table>
     <p>Create by Mativve</p>
 
+    <p><label for="circleRadius">Circle radius:</label> <input type="number" name="circleRadius" id="circleRadius" value="16"></p>
+    <p><label for="showGrid">Show/hide grid</label> <input type="checkbox" name="showGrid" id="showGrid" checked="checked"></p>
+
     <script type="text/javascript">
         var size = 20;
-        var r = 16;
+        var r = 10;
 
         $(document).ready(function() {
+            generateCircle();
+        });
+
+        var html = "";
+
+        function generateCircle() {
+            html = "";
+            $("#circle td").remove();
+            $("#circle tr").remove();
+
             for (var w = 1; w < size; w++) {
-                $("#circle").append("<tr>");
+
+                html += "<tr>";
 
                 for (var k = 1; k < size; k++) {
                     check((w * 2), (k * 2), (size), (size));
                 }
 
-                $("#circle").append("</tr>");
+                html += "</tr>";
             }
-        });
 
+            $("#circle").append(html);
+        }
 
         function check(x1, y1, x2, y2) {
             var dx = x2 - x1;
             var dy = y2 - y1;
             if ((dx * dx + dy * dy) <= (r * r)) {
-                $("#circle").append("<td class='black'>&nbsp;</td>");
+                html += "<td class='black'>&nbsp;</td>";
             } else {
-                $("#circle").append("<td class=''>&nbsp;</td>");
+                html += "<td class=''>&nbsp;</td>";
             }
         }
+
+
+        $("#circleRadius").change(function() {
+
+            if ($(this).val() <= 0) {
+                $(this).val(1);
+            }
+
+            r = $(this).val();
+            size = ($(this).val() * 2);
+            generateCircle();
+
+        });
+
+
+        $("#showGrid").click(function() {
+            if ($(this).is(":checked")) {
+                $("#circle").addClass("showgrid");
+            } else {
+                $("#circle").removeClass("showgrid");
+            }
+        });
 
     </script>
 </body>
