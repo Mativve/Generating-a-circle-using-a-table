@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: darkblue;
+    color: #fff;
+    font-size: 1.25em;
+}
+
+#circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%) scale(0.65);
+    text-align: center;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+#circle td {
+    color: #555;
+    padding: 0.24em 0.65em;
+    border: 1px solid yellow;
+}
+
+#circle td.black {
+    background: yellow;
+
+}
